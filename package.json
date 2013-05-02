@@ -1,0 +1,17 @@
+{
+  "name": "npms",
+  "version": "0.1.0",
+  "description": "make it easier to install git+ssh deps",
+  "main": "index.js",
+  "bin": "./index",
+  "preferGlobal": true,
+  "repository": "",
+  "keywords": [
+    "install",
+    "private",
+    "npm"
+  ],
+  "contributors": ["jden <jason@denizac.org>"],
+  "author": "Agile Diagnosis <hello@agilediagnosis.com>",
+  "license": "MIT"
+}
