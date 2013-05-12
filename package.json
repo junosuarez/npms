@@ -1,6 +1,6 @@
 {
   "name": "npms",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "make it easier to install git+ssh deps",
   "main": "index.js",
   "bin": "./index",
@@ -11,7 +11,13 @@
     "private",
     "npm"
   ],
-  "contributors": ["jden <jason@denizac.org>"],
+  "contributors": [
+    "jden <jason@denizac.org>"
+  ],
   "author": "Agile Diagnosis <hello@agilediagnosis.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "github-latest": "git+ssh://git@github.com:jden/github-latest.git#0.1.1",
+    "q": "~0.9.3"
+  }
 }
