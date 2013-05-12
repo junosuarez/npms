@@ -10,7 +10,8 @@ if (process.argv.some(function (arg) {
     '\n\tinstalls packages and saves to packages.json. package can be any of:\n' +
     '\n\t\tpackage             - install latest from npm' +
     '\n\t\tpackage@version     - specific version from npm' +
-    '\n\t\tgithubUser/repo@tag - specific tag from private github' +
+    '\n\t\tgithubUser/repo     - install latest from github' +
+    '\n\t\tgithubUser/repo@tag - specific tag from github' +
     '\n\n\tIt saves to packages.json by default, it uses github for git urls by default, and it\n\tuses git+ssh by default, because why wouldn\'t you?')
 }
 
