@@ -6,14 +6,22 @@ var resolved = require('resolved')
 
 if (process.argv.some(function (arg) {
   return arg.toLowerCase() === '-h' || arg.toLowerCase() === '--help'
-})) {
-  die('npms package1 ... packageN' +
-    '\n\tinstalls packages and saves to packages.json. package can be any of:\n' +
-    '\n\t\tpackage             - install latest from npm' +
-    '\n\t\tpackage@version     - specific version from npm' +
-    '\n\t\tgithubUser/repo     - install latest from github' +
-    '\n\t\tgithubUser/repo@tag - specific tag from github' +
-    '\n\n\tIt saves to packages.json by default, it uses github for git urls by default, and it\n\tuses git+ssh by default, because why wouldn\'t you?')
+}) || process.argv.length === 2) {
+  die('npms [options] package1 ... packageN' +
+    '\n  installs packages and saves to packages.json. package can be any of:' +
+    '\n' +
+    '\n    package             - install latest from npm' +
+    '\n    package@version     - specific version from npm' +
+    '\n    githubUser/repo     - install latest from github' +
+    '\n    githubUser/repo@tag - specific tag from github' +
+    '\n' +
+    '\n  options' +
+    '\n    -g     global install (like `npm install --global`)' +
+    '\n    -d     save as dev dependency (like `npm install --save-dev`)' +
+    '\n' +
+    '\n  It saves to packages.json by default, it uses github for git urls by default, and it' + 
+    '\n  uses git+ssh by default, because why wouldn\'t you?')
+
 }
 
 var opt = {}
