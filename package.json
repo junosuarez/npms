@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": "./index",
   "preferGlobal": true,
-  "repository": "",
+  "repository": "git@github.com:agilemd/npms.git",
   "keywords": [
     "install",
     "private",
