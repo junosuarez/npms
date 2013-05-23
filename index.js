@@ -24,20 +24,7 @@ if (process.argv.some(function (arg) {
 
 }
 
-var opt = {}
-var packages = process.argv.slice(2).filter(function (arg) {
-  if (arg == '-g') {
-    opt.global = true
-    return false
-  }
-  if (arg == '-d') {
-    opt.dev = true
-    return false
-  }
-  return true
-})
-
-var packages = process.argv.slice(2).reduce(function (opt, arg) {
+var opt = process.argv.slice(2).reduce(function (opt, arg) {
   if (arg == '-g') {
     opt.command = '--global'
   }
@@ -49,7 +36,6 @@ var packages = process.argv.slice(2).reduce(function (opt, arg) {
   }
   return opt
 }, {packages: [], command: '--save'})
-
 
 if (!opt.packages.length) {
   die('no packages specified; aborting installation')
