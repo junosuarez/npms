@@ -1,6 +1,6 @@
 {
   "name": "npms",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "make it easier to install git+ssh deps",
   "main": "index.js",
   "bin": "./index.js",
@@ -17,7 +17,7 @@
   "author": "Agile Diagnosis <hello@agilediagnosis.com>",
   "license": "MIT",
   "dependencies": {
-    "github-latest": "git+ssh://git@github.com:jden/github-latest.git#0.1.1",
+    "github-latest": "git://github.com/jden/github-latest.git#0.1.1",
     "q": "~0.9.3",
     "resolved": "~0.3.1"
   }
