@@ -2,6 +2,7 @@
 var spawn = require('child_process').spawn
 var ghLatest = require('github-latest')
 var Q = require('q')
+var resolved = require('resolved')
 
 if (process.argv.some(function (arg) {
   return arg.toLowerCase() === '-h' || arg.toLowerCase() === '--help'
@@ -15,25 +16,51 @@ if (process.argv.some(function (arg) {
     '\n\n\tIt saves to packages.json by default, it uses github for git urls by default, and it\n\tuses git+ssh by default, because why wouldn\'t you?')
 }
 
-var packages = process.argv.slice(2)
+var opt = {}
+var packages = process.argv.slice(2).filter(function (arg) {
+  if (arg == '-g') {
+    opt.global = true
+    return false
+  }
+  if (arg == '-d') {
+    opt.dev = true
+    return false
+  }
+  return true
+})
 
-if (!packages.length) {
+var packages = process.argv.slice(2).reduce(function (opt, arg) {
+  if (arg == '-g') {
+    opt.command = '--global'
+  }
+  else if (arg == '-d') {
+    opt.command = '--save-dev'
+  }
+  else {
+    opt.packages.push(arg)
+  }
+  return opt
+}, {packages: [], command: '--save'})
+
+
+if (!opt.packages.length) {
   die('no packages specified; aborting installation')
 }
 
-Q.all(packages.map(format)).then(function (packages) {
+opt.packages = Q.all(opt.packages.map(format))
 
-  console.log('installing: ' + packages.join(', '))
-  install(packages)
+resolved(opt).then(function (opt) {
+
+  console.log('installing: ' + opt.packages.join(', '))
+  install(opt)
 
 })
 
 /////////////////////
 
-function install(packages) {
+function install(opt) {
 
-  var command = 'npm install --save ' + packages.join(' ')
-  spawn('npm', ['install','--save'].concat(packages), {stdio: 'inherit'})
+  spawn('npm', ['install',opt.command].concat(opt.packages), {stdio: 'inherit'})
 
 }
 
